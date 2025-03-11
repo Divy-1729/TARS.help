@@ -1,5 +1,6 @@
 # TARS.help
 **TARS : Therapist Aid and Response System**
+
 *AI helping therapists get better*
 
 ---
