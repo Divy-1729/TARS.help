@@ -14,10 +14,10 @@ Preliminary diagnosis of patient condition through conversation.
 - **ExploratoryModels:**  
   Contains all preliminary exploration work on various NLP models.
 - **ProductionModels:**  
-  Contains all optimized models for the `Catharsis.AI` pipeline.
+  Contains all optimized models for the `TARS` pipeline.
 
 ### GPTChatbot
-Includes the GPT pretrained model which will be re-trained using reinforcement learning to optimize its interactions with our users. *(Not implemented yet)*
+Includes the Llama model which will be re-trained using reinforcement learning to optimize its interactions with our users. *(Not implemented yet)*
 
 ### Proposal
-Contains proposal for RBC's Let's Solve It program (did not get accepted, project paused!!).
+Ideation of project, to be edited.
