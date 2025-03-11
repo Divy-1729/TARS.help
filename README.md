@@ -1,5 +1,5 @@
 # Catharsis-AI
-*AI therapist helping depressed UofT students cope*
+*AI helping therapists get better*
 
 ---
 
