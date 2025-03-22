@@ -8,7 +8,7 @@
 ## Navigating this Repository
 
 ### Datasets
-Contains the datasets we use to train the models.
+Contains the datasets I used to train the models.
 
 ### NLP Backend
 Preliminary diagnosis of patient condition through conversation.
