@@ -21,4 +21,4 @@ Preliminary diagnosis of patient condition through conversation.
 Includes the Llama model which will be re-trained using reinforcement learning to optimize its interactions with our users. *(Not implemented yet)*
 
 ### Proposal
-Ideation of project, to be edited.
+Motivation and ideation.
