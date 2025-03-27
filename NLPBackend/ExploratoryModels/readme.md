@@ -18,13 +18,13 @@
 - Has potential, but needs hyperparameter tuning.
 
 ## 4. EmoAkinator 4
-- Tried some hyperparameter tuning, but it's so slow I gave up
+- Tried some hyperparameter tuning, but it's so slow
 - Accuracy : 89% test, 83% val, 83% test (gotta love the 0.3% increase ngl)
 - Also 54 Million parameters what the hell
 - Some good hyperparameter tuning can take this to 85%, but I need more resources and time!!!
 
   ## 5. EmoAkinator 5
-- Hyperparameter tuning for 2 hours, still so fucking slow I gave up
+- Hyperparameter tuning for 2 hours, still so slow 
 - Accuracy : 83.3% test (gotta love the 0.3% increase ngl)
 - Also 54 Million parameters what the hell
 - I was wrong, I should add an attention layer
