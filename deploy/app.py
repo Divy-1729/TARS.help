@@ -6,6 +6,24 @@ import numpy as np
 from transformers import AutoTokenizer, AutoModelForCausalLM, pipeline
 from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing.sequence import pad_sequences
+from mega import Mega
+import os
+
+def download_from_mega(public_url, filename):
+    if not os.path.exists(filename):
+        print("Downloading model from MEGA...")
+        mega = Mega()
+        m = mega.login()  # anonymous login
+        file = m.download_url(public_url, dest_filename=filename)
+        print(f"Downloaded to: {file}")
+    else:
+        print("File already exists.")
+download_from_mega("https://mega.nz/file/Y4hRUTJK#Z9OFi9wTLIPpLRUn4s3MZfMDR8eTiIkr2YkvlpnB1ng", "model1.keras")
+download_from_mega("https://mega.nz/file/Yh4AlBTQ#iy8oPnRW4MXPaiFilMRZ3Ffdb6WB_r5mGV5LjWu2X1U", "model2.keras")
+
+# Then:
+model1 = load_model("model1.keras")
+model2 = load_model("model2.keras")
 
 # Dummy tokenizer logic for basic preprocessing
 def preprocess(text):
@@ -27,14 +45,13 @@ def model2_predict(text):
     return int(np.argmax(pred))
 
 diagnosis_labels = {
-    1: "Anxiety",
-    2: "Depression",
-    3: "Bipolar disorder",
-    4: "PTSD",
-    5: "OCD",
-    6: "ADHD",
-    7: "General emotional distress"
+    0: "Anxiety",
+    1: "Bipolar",
+    2: "BPD",
+    3: "Depression",
+    4: "Schizophrenia"
 }
+
 
 @st.cache_resource
 def load_llm():
