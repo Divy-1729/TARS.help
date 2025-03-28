@@ -4,3 +4,4 @@ torch
 streamlit
 tensorflow-cpu==2.11.0
 protobuf==3.19.6
+mega.py
