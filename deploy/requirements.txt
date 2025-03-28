@@ -1,7 +1,6 @@
-transformers
-accelerate
-torch
 streamlit
-tensorflow-cpu==2.11.0
+transformers
+torch
+tensorflow-cpu==2.10.1
 protobuf==3.19.6
 mega.py
