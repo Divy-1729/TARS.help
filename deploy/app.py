@@ -1,28 +1,23 @@
-import streamlit as st
 import os
 os.environ["PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION"] = "python"
-os.system("pip install tensorflow-cpu==2.11.0")
-import tensorflow
+
+import streamlit as st
+import numpy as np
 from transformers import AutoTokenizer, AutoModelForCausalLM, pipeline
 from tensorflow.keras.models import load_model
-from tensorflow.keras.preprocessing.text import Tokenizer
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 
-# Load tokenizer used in training
-tokenizer = Tokenizer(num_words=10000)
-# You must re-train or load tokenizer from a JSON if you saved it!
-tokenizer.fit_on_texts(["dummy"])  # Temporary; replace with loaded tokenizer
-
-# Preprocess text for models
+# Dummy tokenizer logic for basic preprocessing
 def preprocess(text):
-    sequence = tokenizer.texts_to_sequences([text])
+    tokens = text.lower().split()
+    word_index = {w: i+1 for i, w in enumerate(set(tokens))}
+    sequence = [[word_index.get(word, 0) for word in tokens]]
     return pad_sequences(sequence, maxlen=100)
 
-# Load Keras models
-model1 = load_model("model1.h5")  # Suicide risk
-model2 = load_model("best_model (2).keras")  # Diagnosis classifier
+# Load your trained Keras models
+model1 = load_model("model1.h5")
+model2 = load_model("model2.h5")
 
-# Model prediction wrappers
 def model1_predict(text):
     pred = model1.predict(preprocess(text))[0][0]
     return int(pred > 0.5)
@@ -55,7 +50,6 @@ def load_llm():
 
 generator = load_llm()
 
-# Session memory
 if "history" not in st.session_state:
     st.session_state.history = []
 
@@ -66,7 +60,7 @@ def therapist_pipeline(user_input):
     if risk == 1:
         response = (
             "I'm really sorry you're feeling this way. You're not alone — please talk to someone you trust "
-            "or a professional. I'm here to listen, but it's important to get real support too. Please contact 9-8-8 if you need immediate support. I hope you get better. 💙"
+            "or a professional. I'm here to listen, but it's important to get real support too. 💙"
         )
     else:
         diagnosis_code = model2_predict(user_input)
@@ -94,8 +88,7 @@ Summary:"""
     summary = generator(prompt, max_new_tokens=250, temperature=0.5)[0]["generated_text"]
     return summary.split("Summary:")[-1].strip()
 
-# Streamlit UI
-st.title("🧠 TARS.help")
+st.title("🧠 TARS.help - AI Therapist")
 user_input = st.text_input("How are you feeling today?")
 
 if user_input:
@@ -106,7 +99,6 @@ if st.button("🧾 Generate Therapist Summary"):
     st.markdown("### 🧠 Session Summary")
     st.markdown(summarize_session())
 
-# Show history
 for i in range(0, len(st.session_state.history), 2):
     st.markdown(f"**You:** {st.session_state.history[i][6:]}")
     st.markdown(f"**AI:** {st.session_state.history[i+1][4:]}")
